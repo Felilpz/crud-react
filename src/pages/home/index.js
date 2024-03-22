@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import useAuth from "../../hooks/useAuth";
-import * as C from "./styles";
+import * as C from '../../styles'
 
 const Home = () => {
     const { signout } = useAuth();
@@ -10,11 +10,11 @@ const Home = () => {
 
     return (
         <C.Container>
-            <C.title>Home</C.title>
+            <C.Title>Home</C.Title>
             <Button Text="Sair" onClick={() => [signout(), navigate("/")]}>
-                Go Out
+                Sair
             </Button>
-        </C.Container >
+        </C.Container>
     );
 };
 

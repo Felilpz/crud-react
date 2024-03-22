@@ -4,21 +4,23 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
-    useEffect(() => {
-        const userToken = localStorage.getItem('user_token');
-        const usersStorage = localStorage.getItem('users_db');
 
-        if (userToken && userStorage) {
-            const hasUser = JSON.parse(userStorage)?.filter(
+    useEffect(() => {
+        const userToken = localStorage.getItem("user_token");
+        const usersStorage = localStorage.getItem("users_bd");
+
+        if (userToken && usersStorage) {
+            const hasUser = JSON.parse(usersStorage)?.filter(
                 (user) => user.email === JSON.parse(userToken).email
             );
-        }
 
-        if (hasUser) setUser(hasUser[0]);
+            if (hasUser) setUser(hasUser[0]);
+        }
     }, []);
 
     const signin = (email, password) => {
-        const userStorage = JSON.parse(localStorage.getItem("users_db"))
+        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
+
         const hasUser = usersStorage?.filter((user) => user.email === email);
 
         if (hasUser?.length) {
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }) => {
                 setUser({ email, password });
                 return;
             } else {
-                return "Email ou senha incorretos";
+                return "E-mail ou senha incorretos";
             }
         } else {
             return "Usuário não cadastrado";
@@ -36,12 +38,12 @@ export const AuthProvider = ({ children }) => {
     };
 
     const signup = (email, password) => {
-        const usersStorage = jSON.parse(localStorage.getItem("users_db"));
+        const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
 
-        const hasUser = usersStorage?.filter((user) user.email === email);
+        const hasUser = usersStorage?.filter((user) => user.email === email);
 
         if (hasUser?.length) {
-            return "Usuário já cadastrado";
+            return "Já tem uma conta com esse E-mail";
         }
 
         let newUser;
@@ -52,15 +54,21 @@ export const AuthProvider = ({ children }) => {
             newUser = [{ email, password }];
         }
 
-        localStorage.setItem("users_db", JSON.stringify(newUser));
+        localStorage.setItem("users_bd", JSON.stringify(newUser));
 
         return;
-    }
+    };
 
     const signout = () => {
         setUser(null);
-        localStorage.removeItem("user_token")
-    }
+        localStorage.removeItem("user_token");
+    };
 
-    return <AuthContext.Provider value={{ user, signed: !!user, signin, signup, signout }}>{children}</AuthContext.Provider>;
-}
+    return (
+        <AuthContext.Provider
+            value={{ user, signed: !!user, signin, signup, signout }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+};
