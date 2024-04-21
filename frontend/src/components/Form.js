@@ -9,6 +9,7 @@ const FormContainer = styled.div`
     background-color: #fff;
     padding: 20px;
     box-shadow: 0px 0px 5px #ccc;
+    border-radius: 5px
 `;
 
 const InputArea = styled.div`
@@ -16,7 +17,7 @@ const InputArea = styled.div`
     flex-direction: column;
 `;
 
-const Input = styled.div`
+const Input = styled.input`
     width: 120px;
     padding: 0 10px;
     border: 1px solid #bbb;
@@ -36,12 +37,11 @@ const Button = styled.button`
     height: 42px;
 `;
 
-
 const Form = ({ onEdit }) => {
     const ref = useRef();
 
     return (
-        <FormContainer>
+        <FormContainer ref={ref}>
             <InputArea>
                 <Label>Nome</Label>
                 <input name="nome" />
