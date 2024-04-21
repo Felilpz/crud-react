@@ -9,7 +9,7 @@ const FormContainer = styled.div`
     background-color: #fff;
     padding: 20px;
     box-shadow: 0px 0px 5px #ccc;
-    border-radius: 5px
+    border-radius: 5px;
 `;
 
 const InputArea = styled.div`
@@ -44,19 +44,19 @@ const Form = ({ onEdit }) => {
         <FormContainer ref={ref}>
             <InputArea>
                 <Label>Nome</Label>
-                <input name="nome" />
+                <Input name="nome" />
             </InputArea>
             <InputArea>
                 <Label>E-mail</Label>
-                <input name="email" type="email" />
+                <Input name="email" type="email" />
             </InputArea>
             <InputArea>
                 <Label>Telefone</Label>
-                <input name="fone" />
+                <Input name="fone" />
             </InputArea>
             <InputArea>
                 <Label>Data de Nascimento</Label>
-                <input name="data_nascimento" type="date" />
+                <Input name="data_nascimento" type="date" />
             </InputArea>
 
             <Button type="submit">SALVAR</Button>
