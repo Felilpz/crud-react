@@ -4,7 +4,6 @@ import Form from "./components/Form.js";
 import Grid from "./components/Grid";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { toast, ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -16,7 +15,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
 `;
 
 const Title = styled.h2``;
